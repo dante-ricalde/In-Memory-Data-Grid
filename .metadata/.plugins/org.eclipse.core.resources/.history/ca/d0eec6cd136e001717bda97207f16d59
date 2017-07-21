@@ -1,0 +1,5 @@
+package com.hazelcastexamples.compute.executors;
+
+public class Node {
+
+}

@@ -1,0 +1,10 @@
+package com.hazelcastexamples.compute.executors;
+
+/**
+ * 
+ * @author dante
+ *
+ */
+public class Node {
+
+}

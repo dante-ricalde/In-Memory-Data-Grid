@@ -1,0 +1,29 @@
+<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.9.xsd"
+           xmlns="http://www.hazelcast.com/schema/config"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<properties>
+		<!-- only necessary prior Hazelcast 3.8 -->
+<!-- 		<property name="hazelcast.discovery.enabled">true</property> -->
+	</properties>
+	
+	<group>
+		<name>Hz-Group-1</name>
+		<password>HzGroup123</password>
+	</group>
+	
+	<network>
+		<port auto-increment="true" port-count="100">5701</port>
+		<join>
+			<multicast enabled="false"></multicast>
+			<aws enabled="false"></aws>
+			<tcp-ip enabled="true">
+				<member-list>
+					
+				</member-list>
+			</tcp-ip>
+		</join>
+		
+	</network>
+
+</hazelcast>
