@@ -1,0 +1,11 @@
+version: '2'
+services:
+  # client app fat jar image (client code and dependencies)
+  hazelcast-client:
+    image:  hazelcast_client_app
+    depends_on:
+      - hazelcast
+    volumes:
+      - ../resources:/configFolder
+    environment:
+      - JAVA_OPTS=
