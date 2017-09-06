@@ -11,7 +11,8 @@ import com.hazelcast.config.XmlConfigBuilder;
  */
 public class Node {
 
-	public static void main(String [] args) throws FileNotFoundException {
-		XmlConfigBuilder builder = new XmlConfigBuilder("hazelcast.xml");
+	public static void main(String [] args) throws FileNotFoundException, InterruptedException {
+		XmlConfigBuilder builder = new XmlConfigBuilder("src/main/resources/hazelcast.xml");
+		Thread.sleep(20000);
 	}
 }

@@ -2,7 +2,7 @@ version: '2'
 services:
   # client app fat jar image (client code and dependencies)
   hazelcast-client:
-    image:  hazelcast_client_app
+    image:  dantericalde/hazelcast_client_app
     depends_on:
       - hazelcast
     volumes:
@@ -13,13 +13,13 @@ services:
   hazelcast:
     image:  hazelcast/hazelcast
     volumes:
-      - ../resources:/configFolder
+      - ../resources/member:/configFolder
     environment:
       - JAVA_OPTS=-Dhazelcast.config=/configFolder/hazelcast.xml -Dhazelcast.mancenter.url=http://mancenter:8080/mancenter -Dgroup.name=hz-compose -Dgroup.password=s3crEt
 #    ports:
 #      - 5701:5701
     links:
-      - "management-center:mancenter"
+      - management-center:mancenter
       
   # management center
   management-center:
