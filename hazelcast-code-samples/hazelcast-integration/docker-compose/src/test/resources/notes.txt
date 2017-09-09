@@ -19,3 +19,18 @@ important commands:
 ~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker exec -it docker_management-center_1 sh
 ~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml up
 ~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml down
+
+
+
+It's possible to specify another Dockerfile in docker-compose to customize the creation of a new image instead of  
+downloading the image specified in the service in the docker-compose.yml
+
+management-center:
+    image:  hazelcast/management-center:3.9-EA2
+    ...
+    build:
+      context: .
+      dockerfile: Dockerfile-management-center
+      
+In this case instead of downloading the image, built a new image using the name "hazelcast/management-center:3.9-EA2" and
+the docker file Dockerfile-management-center and the file start.sh because this is specified in the Dockerfile-management-center file
