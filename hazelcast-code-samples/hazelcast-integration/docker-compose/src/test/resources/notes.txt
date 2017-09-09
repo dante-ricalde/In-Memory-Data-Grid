@@ -1,1 +1,21 @@
 https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/docker-compose
+
+Hazelcast Management Center
+	user: dante
+	pass: Pescadito1
+
+
+Theory	
+Runs a one-time command against a service. For example, the following command starts the web service and runs bash as its command.
+
+docker-compose run web bash
+
+# to start a specified service
+docker-compose -f hazelcast.yml run hazelcast-client
+
+important commands:
+~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml ps
+~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml scale hazelcast=2
+~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker exec -it docker_management-center_1 sh
+~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml up
+~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml down

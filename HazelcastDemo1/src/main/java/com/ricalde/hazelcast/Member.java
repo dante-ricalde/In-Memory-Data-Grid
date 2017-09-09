@@ -20,6 +20,10 @@ public class Member {
 		
 		//BlockingQueue<String> queue = hazelcastInstance.getQueue("queue");
 		Queue<String> queue = hazelcastInstance.getQueue("queue");
+		// To execute this test it's necessary to start first this member one, two or three times, then execute the 
+		// client and after 50 seconds all the messages are going to be printed by all the members of this hz cluster,
+		// because the messages when are sent by the client, arrive to all the members of the cluster, namely to each
+		// queue "queue" of each member of the cluster.
 		Thread.sleep(50000);
 		
 		for(;;) {
