@@ -22,36 +22,36 @@ services:
       - management-center:mancenter
       
   # management center
-  management-center:
-    image:  hazelcast/management-center:3.9-EA2
-    # persisting mancenter users db folder to local disk
-    volumes:
-      - ~/management-center-3.9-EA2:/management-center-3.9-EA2
-#      - ~/mancenter-3.8:/mancenter-3.8
-    environment:
-      - MANCENTER_DATA=/management-center:3.9-EA2
-#      - MANCENTER_DATA=/mancenter-3.8
-      - HZ_VERSION=3.9-EA2
-      # enable REST interface on management center
-      # http://docs.hazelcast.org/docs/latest-development/manual/html/Management/Clustered_REST_via_Management_Center.html
-      - JAVA_OPTS=-Dhazelcast.mc.rest.enabled=true
-    ports:
-      - 8080:8080
-    build:
-      context: .
-      dockerfile: Dockerfile-management-center
 #  management-center:
-#    image:  hazelcast/management-center:3.8.2
-##    image:  hazelcast/management-center:3.8
+#    image:  hazelcast/management-center:3.9-EA2
 #    # persisting mancenter users db folder to local disk
 #    volumes:
-#      - ~/mancenter3.8:/mancenter-3.8
+#      - ~/management-center-3.9-EA2:/management-center-3.9-EA2
+##      - ~/mancenter-3.8:/mancenter-3.8
 #    environment:
-#      - MANCENTER_DATA=/mancenter-3.8
-#      #- HZ_VERSION=3.8.4
+#      - MANCENTER_DATA=/management-center:3.9-EA2
+##      - MANCENTER_DATA=/mancenter-3.8
+#      - HZ_VERSION=3.9-EA2
 #      # enable REST interface on management center
 #      # http://docs.hazelcast.org/docs/latest-development/manual/html/Management/Clustered_REST_via_Management_Center.html
 #      - JAVA_OPTS=-Dhazelcast.mc.rest.enabled=true
 #    ports:
 #      - 8080:8080
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-management-center
+  management-center:
+    image:  hazelcast/management-center:3.8.2
+#    image:  hazelcast/management-center:3.8
+    # persisting mancenter users db folder to local disk
+    volumes:
+      - ~/mancenter3.8:/mancenter-3.8
+    environment:
+      - MANCENTER_DATA=/mancenter-3.8
+      #- HZ_VERSION=3.8.4
+      # enable REST interface on management center
+      # http://docs.hazelcast.org/docs/latest-development/manual/html/Management/Clustered_REST_via_Management_Center.html
+      - JAVA_OPTS=-Dhazelcast.mc.rest.enabled=true
+    ports:
+      - 8080:8080
       

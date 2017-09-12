@@ -3,6 +3,8 @@ https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integr
 Hazelcast Management Center
 	user: dante
 	pass: Pescadito1
+	
+I couldn't login in managemente-center 3.9-EA2 using these credentials
 
 
 Theory	
