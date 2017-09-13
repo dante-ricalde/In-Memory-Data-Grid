@@ -15,6 +15,9 @@ docker-compose run web bash
 # to start a specified service
 docker-compose -f hazelcast.yml run hazelcast-client
 
+# to see the logs of a specified service
+docker-compose -f src/main/docker/hazelcast.yml logs hazelcast-client
+
 important commands:
 ~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml ps
 ~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml scale hazelcast=2
