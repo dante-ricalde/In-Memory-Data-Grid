@@ -25,6 +25,9 @@ important commands:
 ~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml up
 ~/In-Memory-DataGrid/hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker$ docker-compose -f hazelcast.yml down
 
+to inspect a specified container:
+docker inspect docker_hazelcast-client_1
+
 
 
 It's possible to specify another Dockerfile in docker-compose to customize the creation of a new image instead of  
@@ -39,3 +42,18 @@ management-center:
       
 In this case instead of downloading the image, built a new image using the name "hazelcast/management-center:3.9-EA2" and
 the docker file Dockerfile-management-center and the file start.sh because this is specified in the Dockerfile-management-center file
+
+
+I could connect with management-center to external cluster and to embedded instance hazelcast
+
+In this exercise you have a centralized cluster of hazelcast, which you can scale using
+	docker-compose -f hazelcast.yml scale hazelcast=2
+All the clients connects to this centralized cluster to put messages to a queue named "queue", when you send a message
+to the cluster (to a member from the cluster), the message is stored in that member and a backup messages is stored in
+all the remaining members
+
+Apart from having a centralized hz cluster, each client has a hz member embedded, you can scale the client using
+	docker-compose -f hazelcast.yml scale hazelcast-client=2
+with the client is scale, all the embedded hz members are configured to form a cluster named "hz.service1", when
+a client put a message in a queue "embeddedQueue" to its embedded hz member, the message is stored in that member, but it's
+also backed (stored) in the remaining embedded hz members that form the cluster "hz.service1"

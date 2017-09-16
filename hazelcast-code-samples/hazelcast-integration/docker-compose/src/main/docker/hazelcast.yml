@@ -3,15 +3,21 @@ services:
   # client app fat jar image (client code and dependencies)
   hazelcast-client:
     image:  dantericalde/hazelcast_client_app
+    #container_name: hazelcast-client
     depends_on:
       - hazelcast
     volumes:
       - ../resources:/configFolder
     environment:
       - JAVA_OPTS=-Dhazelcast.client.config=/configFolder/hazelcast-client.xml -Dhazelcast.member.address=hazelcast -Dgroup.name=hz-compose -Dgroup.password=s3crEt
+    links:
+      - management-center:mancenter
   # hazelcast imdg
   hazelcast:
     image:  hazelcast/hazelcast
+    # This can't have a container_name because you couldn't scale it using docker-compose, it would need diferent names
+    # for each service
+    #container_name: hazelcast
     volumes:
       - ../resources/member:/configFolder
     environment:
@@ -42,6 +48,7 @@ services:
 #      dockerfile: Dockerfile-management-center
   management-center:
     image:  hazelcast/management-center:3.8.2
+    container_name: management-center
 #    image:  hazelcast/management-center:3.8
     # persisting mancenter users db folder to local disk
     volumes:
