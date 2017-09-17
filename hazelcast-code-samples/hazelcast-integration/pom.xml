@@ -21,6 +21,7 @@
 
     <modules>
         <module>docker-compose</module>
+        <module>service2</module>
     </modules>
 
     <dependencies>

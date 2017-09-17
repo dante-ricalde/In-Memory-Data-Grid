@@ -1,0 +1,2 @@
+#logging.level.com.hazelcast.samples: DEBUG
+logging.file: docker-compose.log

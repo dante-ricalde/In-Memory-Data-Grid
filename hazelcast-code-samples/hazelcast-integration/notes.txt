@@ -1,0 +1,23 @@
+I could connect with management-center to external cluster and to embedded instance hazelcast
+
+In this exercise you have a centralized cluster of hazelcast, which you can scale using
+	docker-compose -f hazelcast.yml scale hazelcast=2 &
+All the clients connects to this centralized cluster to put messages to a queue named "queue", when you send a message
+to the cluster (to a member from the cluster), the message is stored in that member and a backup messages is stored in
+all the remaining members
+
+Apart from having a centralized hz cluster, each client has a hz member embedded, you can scale the client using
+	docker-compose -f hazelcast.yml scale hazelcast-client=2 &
+with the client is scale, all the embedded hz members are configured to form a cluster named "hz.service1", when
+a client put a message in a queue "embeddedQueue" to its embedded hz member, the message is stored in that member, but it's
+also backed (stored) in the remaining embedded hz members that form the cluster "hz.service1"
+
+to scale several services in a single command
+	docker-compose -f hazelcast.yml up --scale hazelcast=2 --scale hazelcast-client=2 --scale service2=2 &
+
+I have configured another service called 'service2', this service has its own hz member instance configured when the name and password of the cluster is the
+machine ip, when this service is scaled using 
+	docker-compose -f hazelcast.yml up --scale hazelcast=2 --scale hazelcast-client=2 --scale service2=2 &
+and you get into the managemenet center http://172.18.0.2:8080/mancenter/main.html# you can see the clusters: hz-compose, hz.service1 and each cluster for each
+machine ip (each instance) of the service 'service2' that has been scaled, when you get into a cluster which has an ip (namely it's an instance of the service 'service2')
+you can see the queue named 'embeddedQueue' and that queue has 1 message that it has been sent by this service2 instance.
